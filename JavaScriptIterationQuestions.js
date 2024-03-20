@@ -124,8 +124,8 @@ console.log(products.sort((a, b) => {
   return a.price - b.price;
 }));
 
-console.log(products.sort((b, a) => {
-  return a.price - b.price;
+console.log(products.sort((a, b) => {
+  return b.price - a.price;
 }));
 const sortedEntities = Object.entries(products).sort(([fruit, quantity]) => quantity > 10);
 
@@ -133,6 +133,26 @@ console.log(Object.fromEntries(filteredEntities));
 
 //Q7. Find Longest Word: Write a program that takes an array of strings and uses the find method to find the longest word (string with the most characters) in the array.
 const stringArray = ["apple", "banana", "orange", "grape", "kiwi"];
+
+
+//Q8. Array of Objects Sorting: Given an array of objects representing students with name, grade, and age properties, write a program to sort the students first by grade (descending) and then by age (ascending).
+const students = [
+    { name: 'Alice', grade: 85, age: 20 },
+    { name: 'Bob', grade: 75, age: 22 },
+    { name: 'Charlie', grade: 90, age: 19 },
+    { name: 'David', grade: 85, age: 21 }
+];
+
+students.sort((a, b) => {
+    // First sort by grade (descending)
+    if (a.grade !== b.grade) {
+        return b.grade - a.grade;
+    }
+    // If grades are the same, sort by age (ascending)
+    return a.age - b.age;
+});
+
+console.log(students);
 
 const longestWord = stringArray.find(word => {
     return word.length === Math.max(...stringArray.map(word => word.length));
