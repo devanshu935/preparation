@@ -160,5 +160,40 @@ const longestWord = stringArray.find(word => {
 
 console.log("Longest word:", longestWord);
 
-//Q9. Deep Object Comparison: Implement a program that performs a deep comparison between two objects, checking if they have the same structure and values (recursively).(Pending)
+//Q9. Deep Object Comparison: Implement a program that performs a deep comparison between two objects, checking if they have the same structure and values (recursively).
+const obj1 = {
+  a: ['hello', 'hi'],
+  b: 4,
+  c: { name: 'hello', year: '2015' },
+}
+
+const obj2 = {
+  a: ['hello', 'hi'],
+  b: 4,
+  c: { name: 'hello', year: '2015' },
+}
+
+function deepCompare(obj1, obj2) {
+  // Check if both arguments are objects
+  if (typeof obj1 !== 'object' || typeof obj2 !== 'object') {
+      return obj1 === obj2; // Return true if they are primitives and equal, otherwise false
+  }
+
+  // Check if both objects have the same number of keys
+  const keys1 = Object.keys(obj1);
+  const keys2 = Object.keys(obj2);
+  if (keys1.length !== keys2.length) {
+      return false;
+  }
+
+  // Check if all keys in obj1 are present in obj2 and have the same values (recursively)
+  for (let key of keys1) {
+      if (!keys2.includes(key) || !deepCompare(obj1[key], obj2[key])) {
+          return false;
+      }
+  }
+
+  return true; // If all checks pass, the objects are deeply equal
+}
+console.log(deepCompare(obj1, obj2));
 //Q10. JSON Flattening: Write a program that flattens a deeply nested JSON object into a single-level object with compound keys. For example, { "a": { "b": { "c": 1 } } } should become { "a.b.c": 1 }. (Pending)
